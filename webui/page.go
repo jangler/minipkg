@@ -8,14 +8,17 @@ var PageTemplate = template.Must(template.New("page").Parse(`
 <html>
 <head>
 <title>{{.Title}}</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <style>
-a,h1,h2,h3,h4,h5,h6 { color: #375eab; }
-body { background-color: white; font-family: sans-serif; padding: 0.5rem; }
-.title { background-color: #e0ebf5; padding: 0.5rem; }
+a { text-decoration: none; }
+a:hover { text-decoration: underline; }
+a,h1,h2,h3,h4,h5,h6 { color: #38468d; }
+body { background-color: #ffffff; font-family: sans-serif; margin: 0; }
+.title { background-color: #dee1f6; padding: 1rem; }
 .title > h2 { margin: 0; }
 .content { padding: 1rem; }
-html { background-color: whitesmoke; }
-p { color: #222222; }
+html { background-color: #e2e2e2; }
+p { color: #2f2f2f; }
 </style>
 </head>
 <body>
