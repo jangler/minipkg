@@ -106,7 +106,7 @@ func TestLaunch(t *testing.T) {
 		done <- struct{}{}
 	})
 
-	go Start()
+	go Start("/")
 	<-done
 	<-done
 	time.Sleep(time.Second / 10)

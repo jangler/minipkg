@@ -26,7 +26,7 @@ func getOpenPort() string {
 
 // Start starts the HTTP server and opens the application page in the user's
 // web browser, or returns an error.
-func Start() error {
+func Start(url string) error {
 	done := make(chan error)
 	addr := getOpenPort()
 	go func() {
@@ -34,6 +34,6 @@ func Start() error {
 	}()
 	var d writers.Discarder
 	browser.Stdout, browser.Stderr = d, d
-	browser.OpenURL(fmt.Sprintf("http://localhost%s/", addr))
+	browser.OpenURL(fmt.Sprintf("http://localhost%s%s", addr, url))
 	return <-done
 }
