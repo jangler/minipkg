@@ -1,3 +1,5 @@
+// Package webui defines templates and functions for rapid development of
+// applications that expose a local web interface.
 package webui
 
 import (

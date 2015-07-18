@@ -1,3 +1,4 @@
+// Package writers defines types that implement the io.Writer interface.
 package writers
 
 // Discarder is an io.Writer that simply discards data written to it.
