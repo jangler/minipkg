@@ -1,6 +1,7 @@
 package webui
 
 import (
+	"bytes"
 	"html/template"
 	"net"
 	"net/http"
@@ -78,14 +79,35 @@ func TestGetOpenPort(t *testing.T) {
 
 func TestLaunch(t *testing.T) {
 	done := make(chan struct{})
+
 	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
-		Template.Execute(w, Context{
+		PageTemplate.Execute(w, PageData{
 			Title:   "Hello, world!",
 			Content: testContent,
 		})
 		done <- struct{}{}
 	})
+
+	http.HandleFunc("/table", func(w http.ResponseWriter, r *http.Request) {
+		var buf bytes.Buffer
+		TableTemplate.Execute(&buf, TableData{
+			Caption: "Caption",
+			Header:  []string{"Header 1", "Header 2"},
+			Footer:  []string{"Footer 1", "Footer 2"},
+			Body: [][]string{
+				[]string{"Body A1", "Body A2"},
+				[]string{"Body B1", "Body B2"},
+			},
+		})
+		PageTemplate.Execute(w, PageData{
+			Title:   "Table",
+			Content: template.HTML(buf.String()),
+		})
+		done <- struct{}{}
+	})
+
 	go Start()
+	<-done
 	<-done
 	time.Sleep(time.Second / 10)
 }
