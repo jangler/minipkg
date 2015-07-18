@@ -17,15 +17,17 @@ var Template = template.Must(template.New("tmpl").Parse(`
 <head>
 <title>{{.Title}}</title>
 <style>
-body { font-family: sans-serif; padding: 0.5rem; }
-div.title { background-color: #e0ebf5; padding: 0.5rem; }
-div.content { padding: 0.5rem; }
-h1,h2,h3,h4,h5,h6 { color: #375eab; margin: 0.5rem; }
-p { color: #222222; margin: 0.5rem 1.5rem 0.5rem 1.5rem; }
+a,h1,h2,h3,h4,h5,h6 { color: #375eab; }
+body { background-color: white; font-family: sans-serif; padding: 0.5rem; }
+.title { background-color: #e0ebf5; padding: 0.5rem; }
+.title > h2 { margin: 0; }
+.content { padding: 1rem; }
+html { background-color: whitesmoke; }
+p { color: #222222; }
 </style>
 </head>
 <body>
-<div class="title"><h1>{{.Title}}</h1></div>
+<div class="title"><h2>{{.Title}}</h2></div>
 <div class="content">{{.Content}}</div>
 </body>
 </html>
