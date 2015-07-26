@@ -3,6 +3,10 @@ minipkg
 Tiny public-domain Go packages composed of independent source files that
 can be included in another project.
 
+[wave](http://godoc.org/github.com/jangler/minipkg/wave)
+--------------------------------------------------------
+Wave file writer.
+
 [webui](http://godoc.org/github.com/jangler/minipkg/webui)
 ----------------------------------------------------------
 Templates, styles, and boilerplate for developing applications that
