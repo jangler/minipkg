@@ -55,7 +55,6 @@ func (f *File) Write(w io.Writer) error {
 	padByte := raw.RIFFSize%2 == 1
 	if padByte {
 		raw.RIFFSize += 1
-		raw.DataSize += 1
 	}
 
 	if err := binary.Write(w, binary.LittleEndian, raw); err != nil {
