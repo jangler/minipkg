@@ -10,7 +10,7 @@ import (
 
 var (
 	commentRegexp  = regexp.MustCompile(`^;.*`)
-	propertyRegexp = regexp.MustCompile(`^(.+)=(.*)`)
+	propertyRegexp = regexp.MustCompile(`^(.+?)=(.*)`)
 	sectionRegexp  = regexp.MustCompile(`^\[(.+)\]$`)
 )
 
