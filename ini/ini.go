@@ -24,6 +24,7 @@ type File map[string]Section
 
 // Read reads r as an INI file. Each line of r must either be a property
 // ("name=value"), section ("[section]"), comment ("; comment"), or blank line.
+// Property names are case-sensitive.
 func Read(r io.Reader) (File, error) {
 	scanner := bufio.NewScanner(r)
 	file := make(File)
@@ -51,7 +52,7 @@ func Read(r io.Reader) (File, error) {
 }
 
 // Write writes f to w in INI format.
-func Write(f File, w io.Writer) error {
+func (f File) Write(w io.Writer) error {
 	buf := bufio.NewWriter(w)
 
 	// write global properties
@@ -62,16 +63,12 @@ func Write(f File, w io.Writer) error {
 				return err
 			}
 		}
-
-		if _, err := buf.WriteString("\r\n"); err != nil {
-			return err
-		}
 	}
 
 	// write sections
 	for sectionName, section := range f {
 		if sectionName == "" {
-			break // since we already wrote global properties
+			continue // since we already wrote global properties
 		}
 
 		if _, err := buf.WriteString("[" + sectionName + "]\r\n"); err != nil {
@@ -83,10 +80,6 @@ func Write(f File, w io.Writer) error {
 			if err != nil {
 				return err
 			}
-		}
-
-		if _, err := buf.WriteString("\r\n"); err != nil {
-			return err
 		}
 	}
 
