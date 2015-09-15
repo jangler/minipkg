@@ -3,6 +3,10 @@ minipkg
 Tiny public-domain Go packages composed of independent source files that
 can be included in another project.
 
+[ini](http://godoc.org/github.com/jangler/minipkg/ini)
+--------------------------------------------------------
+INI file reader and writer.
+
 [tool](http://godoc.org/github.com/jangler/minipkg/tool)
 --------------------------------------------------------
 Simple framework for writing command-line tools with multiple subcommands.
