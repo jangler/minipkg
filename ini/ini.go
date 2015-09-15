@@ -23,7 +23,7 @@ type Section map[string]string
 type File map[string]Section
 
 // Read reads r as an INI file. Each line of r must either be a property
-// ("name=value"), section ("[section]"), comment ("; comment"), or blank line.
+// ("name=value"), section ("[section]"), comment (";comment"), or blank line.
 // Property names are case-sensitive.
 func Read(r io.Reader) (File, error) {
 	scanner := bufio.NewScanner(r)
