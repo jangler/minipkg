@@ -1,3 +1,4 @@
+// Package wave implements a function for writing WAVE files.
 package wave
 
 import (
@@ -6,11 +7,11 @@ import (
 )
 
 const (
-	WAVE_FORMAT_PCM        = 0x0001
-	WAVE_FORMAT_IEEE_FLOAT = 0x0003
-	WAVE_FORMAT_ALAW       = 0x0006
-	WAVE_FORMAT_MULAW      = 0x0007
-	WAVE_FORMAT_EXTENSIBLE = 0xfffe
+	waveFormatPCM        = 0x0001
+	waveFormatIEEEFloat  = 0x0003
+	waveFormatALaw       = 0x0006
+	waveFormatMuLaw      = 0x0007
+	waveFormatExtensible = 0xfffe
 )
 
 type rawFile struct {
@@ -29,6 +30,7 @@ type rawFile struct {
 	DataSize         uint32
 }
 
+// File contains information about a PCM sound.
 type File struct {
 	Channels       int
 	SampleRate     int
@@ -36,6 +38,7 @@ type File struct {
 	Data           []byte
 }
 
+// Write writes f to w in WAVE format.
 func (f *File) Write(w io.Writer) error {
 	raw := &rawFile{
 		RIFFID:           [4]byte{'R', 'I', 'F', 'F'},
@@ -43,7 +46,7 @@ func (f *File) Write(w io.Writer) error {
 		WaveID:           [4]byte{'W', 'A', 'V', 'E'},
 		FmtID:            [4]byte{'f', 'm', 't', ' '},
 		FmtSize:          16,
-		FormatTag:        WAVE_FORMAT_PCM,
+		FormatTag:        waveFormatPCM,
 		Channels:         uint16(f.Channels),
 		SamplesPerSecond: uint32(f.SampleRate),
 		BytesPerSecond:   uint32(f.SampleRate * f.BytesPerSample * f.Channels),

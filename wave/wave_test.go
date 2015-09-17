@@ -41,7 +41,7 @@ func TestFileWrite(t *testing.T) {
 	if got, want := raw.FmtSize, uint32(16); got != want {
 		t.Errorf("rawFile.FmtSize == %v; want %v", got, want)
 	}
-	if got, want := raw.FormatTag, uint16(WAVE_FORMAT_PCM); got != want {
+	if got, want := raw.FormatTag, uint16(waveFormatPCM); got != want {
 		t.Errorf("rawFile.FormatTag == %v; want %v", got, want)
 	}
 	if got, want := raw.Channels, uint16(1); got != want {
