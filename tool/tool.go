@@ -1,3 +1,5 @@
+// Package tool implements a framework for constructing multi-purpose
+// command-line programs in the fashion of the `go` tool.
 package tool
 
 import (
