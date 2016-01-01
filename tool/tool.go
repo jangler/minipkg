@@ -9,6 +9,7 @@ import (
 	"io"
 	"log"
 	"os"
+	"sort"
 )
 
 // Description is the description that is printed in the main usage message. If
@@ -79,17 +80,25 @@ func getArgs(cmd string, min, max int, args []string) []string {
 }
 
 func printCommands() {
+	names := make([]string, len(Commands))
+	i := 0
+	for name, _ := range Commands {
+		names[i] = name
+		i++
+	}
+	sort.Strings(names)
+
 	maxlen := 0
-	for _, cmd := range Commands {
-		if len(cmd.Name) > maxlen {
-			maxlen = len(cmd.Name)
+	for _, name := range names {
+		if len(name) > maxlen {
+			maxlen = len(name)
 		}
 	}
 	space := "                "
 
-	for _, cmd := range Commands {
-		fmt.Fprintf(os.Stderr, "  %s%s  %s\n", cmd.Name,
-			space[:maxlen-len(cmd.Name)], cmd.Summary)
+	for _, name := range names {
+		fmt.Fprintf(os.Stderr, "  %s%s  %s\n", name, space[:maxlen-len(name)],
+			Commands[name].Summary)
 	}
 }
 
