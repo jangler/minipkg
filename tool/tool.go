@@ -24,7 +24,7 @@ type Command struct {
 	Function    func([]string)
 	FlagSet     *flag.FlagSet
 	MinArgs     int
-	MaxArgs     int
+	MaxArgs     int // -1 denotes no maximum
 	HasOpts     bool
 }
 
